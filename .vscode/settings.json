@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./pet_mate"
+    ],
+    "python.analysis.autoSearchPaths": true,
+    "python.defaultInterpreterPath": "/usr/local/bin/python3"
+}
