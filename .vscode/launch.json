@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Pet Mate Main",
+            "type": "debugpy",
+            "request": "launch",
+            // Specify the exact file path relative to the workspace root
+            "program": "${workspaceFolder}/pet_mate/main.py",
+            // Use the "python3" interpreter specified in settings.json
+            "python": "python3", 
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
