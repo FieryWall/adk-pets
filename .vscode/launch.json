@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Pet Mate Main",
+            "name": "Debug Pet Mate",
             "type": "debugpy",
             "request": "launch",
             // Specify the exact file path relative to the workspace root
@@ -12,6 +12,23 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "name": "ADK Web Evaluation",
+            "type": "node-terminal", 
+            "request": "launch",
+            
+            // --- The Command to Execute ---
+            "command": "adk web evaluation/agents --port 8002", 
+            
+            "cwd": "${workspaceFolder}", 
+            
+            // --- Automatic Browser Opening ---
+            "serverReadyAction": {
+                "pattern": "http://127.0.0.1:8002",
+                "action": "openExternally",
+                "uriFormat": "http://127.0.0.1:8002" 
+            }
         }
     ]
 }
