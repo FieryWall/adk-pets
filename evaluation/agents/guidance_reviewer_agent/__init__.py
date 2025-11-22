@@ -1,6 +1,11 @@
+"""
+Proxy agent module for guidance reviewer agent evaluation.
+This module exposes the guidance reviewer agent for ADK evaluation.
+"""
+
 from google.adk.agents import Agent
 
-# [TODO] This is a placeholder agent definition. Update as needed!
+# Direct agent definition for evaluation - avoids complex import paths
 guidance_reviewer_agent = Agent(
     name="guidance_reviewer",
     description="Agent that reviews and provides feedback on pet care guidance",
@@ -13,8 +18,15 @@ guidance_reviewer_agent = Agent(
     - Emergency awareness: Does it appropriately recommend veterinary care when needed?
 
     If the guidance is accurate, safe, complete, and appropriate, respond with 'APPROVED'.
-    Otherwise, provide specific constructive feedback explaining what needs improvement, focusing on safety concerns, missing information, or inaccuracies.
-    Keep responses SHORT and CONCISE - provide essential guidance without excessive detail""",
+    Otherwise, provide specific constructive feedback explaining what needs improvement, focusing on safety concerns, missing information, or inaccuracies.""",
     output_key="review_feedback",
-    model="gemini-2.5-flash-lite"
+    model="gemini-2.5-flash-lite",
+    tools=[]  # No tools needed for direct evaluation responses
 )
+
+# Export for ADK eval
+agent = guidance_reviewer_agent
+root_agent = guidance_reviewer_agent
+
+# Ensure no other agents are accessible
+__all__ = ['agent', 'root_agent']
