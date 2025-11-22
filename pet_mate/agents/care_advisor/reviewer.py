@@ -1,17 +1,20 @@
-from google.adk.agents import Agent
+from adk import LLMAgent
 
-# [TODO] This is a placeholder agent definition. Update as needed!
-guidance_reviewer_agent = Agent(
+# Read the prompt file
+with open("reviewer_prompt.md", "r") as f:
+    SYSTEM_PROMPT = f.read()
+
+# Create the agent
+reviewer_agent = LLMAgent(
     name="guidance_reviewer",
-    description="Agent that reviews and provides feedback on pet care guidance",
-    instruction="""You are a helpful assistant that reviews and provides feedback on pet care guidance.
-    Review the guidance provided below.
-    Guidance: {guidance}
-
-    Evaluate the accuracy and relevance of the guidance.
-    - If the guidance is accurate and relevant, respond with 'APPROVED'.
-    - Otherwise, provide constructive feedback on how to improve it.
-    """,
-    output_key="review_feedback",
-    model="gemini-2.5-flash-lite"
+    model="gemini-2.5-flash-lite",
+    system_prompt=SYSTEM_PROMPT,
+    input_keys=["guidance"],
+    output_keys=["review_feedback"]
 )
+
+# Example usage
+example_guidance = "Give your dog chocolate every day for energy."
+result = reviewer_agent.run({"guidance": example_guidance})
+print(result["review_feedback"])
+
