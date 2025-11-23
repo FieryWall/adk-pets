@@ -1,24 +1,15 @@
+"""
+Pet care agent module for ADK eval command.
+This is a standalone agent definition for evaluation only.
+"""
+
 from google.adk.agents import Agent
-from google.adk.tools import FunctionTool
-from pet_mate.common import ClarificationNeeded
 
-# [TODO] This is a placeholder agent definition. Update as needed!
-def ask_clarification(question: str) -> str:
-    """
-    A tool the agent uses to explicitly ask the user for more information 
-    to resolve a task. This function raises an exception to pause the flow.
-
-    Args:
-        question: The specific question the agent needs answered.
-
-    Returns:
-        str: The user's response (in a full ADK flow).
-    """
-    raise ClarificationNeeded(question)
-
+# Create a standalone agent definition for evaluation
+# This avoids any complex imports from the main project
 guidance_writer_agent = Agent(
-    name="care_advisor",
-    description="Agent that provides advice and information on pet care",
+    name="pet_care_evaluator",
+    description="Agent that provides direct pet care advice for evaluation",
     instruction="""You are a helpful assistant providing pet care advice. 
     
     CRITICAL RULE: Always provide helpful, practical guidance based on the information given, even if some details are missing.
@@ -32,8 +23,15 @@ guidance_writer_agent = Agent(
     - Be warm, empathetic, and professional
     - Focus on common-sense care and observation
     - NEVER ask for clarification - always provide your best advice with the information given
-    - Keep responses SHORT and CONCISE - provide essential guidance without excessive detail""",
-    tools=[],  # Removed clarification tool for evaluation compatibility
+    - Provide direct, helpful responses in a conversational tone""",
+    tools=[],  # No tools - direct responses only
     output_key="guidance",
     model="gemini-2.5-flash-lite"
 )
+
+# Export for ADK eval
+agent = guidance_writer_agent
+root_agent = guidance_writer_agent
+
+# Ensure no other agents are accessible
+__all__ = ['agent', 'root_agent']

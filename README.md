@@ -104,6 +104,31 @@ adk-pets/
 - **`utils/adk_utils.py`**: Google ADK utilities and configuration helpers
 - **`notebooks/`**: Development and testing notebooks
 
+## 🧪 Testing
+
+### Web UI Testing
+
+The easiest way to test the agents is through the ADK Web UI:
+
+```bash
+# Start the web interface
+./start_web.sh
+
+# Or manually:
+adk web evaluation/agents --port 8002
+```
+
+Then open http://localhost:8002 in your browser to:
+- Chat with agents interactively
+- Run predefined test cases
+- View evaluation results
+- Create new test scenarios
+
+### Test Cases Included
+
+- **Guidance Writer Agent**: 4 test cases covering dog limping, cat feeding, appetite loss, and behavioral changes
+- **Guidance Reviewer Agent**: 6 test cases for evaluating advice quality, safety, and completeness
+
 ## 👥 Authors
 
 - **Shery Khanlar** 
