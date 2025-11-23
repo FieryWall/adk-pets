@@ -40,3 +40,52 @@ class MemoryIngestionTool(BaseTool):
         await self.memory_service.add_session_to_memory(session)
         
         return f"Successfully archived {len(session.messages)} messages into long-term memory."
+
+
+class MemoryRetrievalTool(BaseTool):
+    """
+    A tool that queries the memory service for relevant memory entries.
+    Provides a simple interface to search long-term memory by a query string
+    and return matching memory entries.
+    """
+
+    name: str = "query_memory"
+    description: str = "Searches long-term memory for entries relevant to a query."
+    dependencies = [BaseMemoryService]
+
+    def __init__(self, memory_service: BaseMemoryService):
+        self.memory_service = memory_service
+
+    async def query_memory(self, query: str, top_k: int = 5):
+        """
+        Query the memory service and return up to `top_k` matching entries.
+
+        Args:
+            query (str): The natural-language query to search memory.
+            top_k (int): Maximum number of results to return.
+
+        Returns:
+            list[str]: A list of string representations of matching memory entries.
+        """
+        if not query or not isinstance(query, str):
+            return []
+
+        # BaseMemoryService exposes `search_memory(query, top_k=...)`
+        results = await self.memory_service.search_memory(query, top_k=top_k)
+
+        # `results` may be a list of memory_entry objects; convert to readable strings
+        entries = []
+        for r in results or []:
+            # try common attributes, fall back to str()
+            text = None
+            if hasattr(r, 'text'):
+                text = r.text
+            elif hasattr(r, 'content'):
+                text = r.content
+            elif hasattr(r, 'metadata'):
+                text = str(r.metadata)
+            else:
+                text = str(r)
+            entries.append(text)
+
+        return entries
