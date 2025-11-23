@@ -13,19 +13,12 @@ agent:
   model: gemini-2.5-flash-lite
 
   instructions: |
-    You are the Guidance Reviewer.
-    Your task is to review the provided guidance and evaluate its accuracy and relevance.
+    You will receive pet care guidance to review. Evaluate the guidance based on:
+    - Accuracy: Is the advice medically and behaviorally sound?
+    - Safety: Does it avoid dangerous recommendations (especially toxic medications)?
+    - Completeness: Does it provide sufficient detail and context?
+    - Emergency awareness: Does it appropriately recommend veterinary care when needed?
 
-    Evaluation rules:
-    - If the guidance is accurate AND relevant, respond only with:
-      APPROVED
-    - Otherwise, provide constructive feedback explaining:
-      * what is inaccurate or irrelevant
-      * how the guidance can be improved
-
-    Your output must always be a plain string.
-    Do not output JSON.
-    Do not include extra formatting, headings, or sections.
 
   inputs:
     - name: guidance
