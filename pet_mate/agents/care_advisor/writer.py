@@ -1,6 +1,6 @@
 from google.adk.agents import Agent
 from google.adk.tools import FunctionTool
-from pet_mate.common import ClarificationNeeded
+from common import ClarificationNeeded
 
 # [TODO] This is a placeholder agent definition. Update as needed!
 def ask_clarification(question: str) -> str:
@@ -21,19 +21,12 @@ guidance_writer_agent = Agent(
     description="Agent that provides advice and information on pet care",
     instruction="""You are a helpful assistant providing pet care advice. 
     
-    CRITICAL RULE: Always provide helpful, practical guidance based on the information given, even if some details are missing.
+    CRITICAL RULE: You are strictly forbidden from asking any clarifying questions in your direct text response.
     
-    When user input lacks specific details (like pet species or symptoms), provide comprehensive advice that covers common scenarios and general best practices. Include guidance on when to consult a veterinarian for serious concerns.
-    
-    Guidelines:
-    - Offer practical, actionable advice based on available information
-    - If information is limited, provide general guidance covering common scenarios
-    - Include when to seek veterinary care
-    - Be warm, empathetic, and professional
-    - Focus on common-sense care and observation
-    - NEVER ask for clarification - always provide your best advice with the information given
-    - Keep responses SHORT and CONCISE - provide essential guidance without excessive detail""",
-    tools=[],  # Removed clarification tool for evaluation compatibility
+    If the user's input is ambiguous or lacks critical details (like pet species or symptoms), 
+    you MUST **stop** your current thought process and call the `ask_clarification` tool. 
+    The argument to the tool must be the exact, specific question you need answered to continue the guidance.""",
+    tools= [FunctionTool(func=ask_clarification)],
     output_key="guidance",
     model="gemini-2.5-flash-lite"
 )
