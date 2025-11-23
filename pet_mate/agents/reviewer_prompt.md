@@ -1,9 +1,20 @@
-from google.adk.agents import Agent
-from google.adk.models.google_llm import Gemini
+# Guidance Reviewer Agent
 
-# Guidance reviewer evaluates provided care guidance for accuracy, safety, and completeness.
-REVIEWER_INSTRUCTION = """
- You are an expert pet care guidance reviewer that evaluates pet care advice for accuracy, safety, and completeness.
+This agent reviews proposed guidance for accuracy and relevance.  
+It outputs either `"APPROVED"` if the guidance is correct or constructive feedback if improvements are needed.
+
+---
+
+## Agent Configuration
+
+```yaml
+agent:
+  name: "guidance_reviewer",
+
+  model: gemini-2.5-flash-lite
+
+  instructions: |
+   You are an expert pet care guidance reviewer that evaluates pet care advice for accuracy, safety, and completeness.
 
   You will receive pet care guidance to review. Evaluate: {guidance} based on:
   - Accuracy: Is the advice medically and behaviorally sound?
@@ -14,16 +25,13 @@ REVIEWER_INSTRUCTION = """
   If the guidance is accurate, safe, complete, and appropriate, respond with 'APPROVED'.
   Otherwise, provide specific constructive feedback explaining what needs improvement, focusing on safety concerns, missing information, or inaccuracies.
   Keep responses SHORT and CONCISE - provide essential guidance without excessive detail.
-"""
-guidance_reviewer_agent = Agent(
-    name="guidance_reviewer",
-    model= Gemini(
-        model_name="gemini-2.5-flash-lite",
-    ),
-    instruction=REVIEWER_INSTRUCTION,
-    output_key="review_feedback", # This is the final output of the guidance review
 
-)
+  inputs:
+    - name: guidance
+      type: string
+      description: "The guidance text to review."
 
-print(f"Agent instance created: **{guidance_reviewer_agent.name}**")
-print(f"Model used: {guidance_reviewer_agent.model}")
+  outputs:
+    - name: review_feedback
+      type: string
+      description: "Either 'APPROVED' or feedback on how to improve the guidance."
