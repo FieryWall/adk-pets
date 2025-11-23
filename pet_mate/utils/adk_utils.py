@@ -1,7 +1,6 @@
 from google.genai import types
 
-def build_retry_options() -> types.HttpRetryOptions:
-    return types.HttpRetryOptions(
+retry_options = types.HttpRetryOptions(
     attempts=5,  # Maximum retry attempts
     exp_base=7,  # Delay multiplier
     initial_delay=1,
