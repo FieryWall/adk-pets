@@ -21,6 +21,8 @@ async def test_save_session_to_memory():
 
 	# Run the async method
 	result = await tool.save_session_to_memory(session)
+	# Display result for verification
+	print("test_save_session_to_memory ->", result)
 
 	# Assert correct result
 	assert result == "Successfully archived 3 messages into long-term memory."
@@ -32,6 +34,8 @@ async def test_save_session_to_memory_empty():
 	tool = MemoryIngestionTool(memory_service=mock_memory_service)
 	session = DummySession(messages=[])
 	result = await tool.save_session_to_memory(session)
+	# Display result for verification
+	print("test_save_session_to_memory_empty ->", result)
 	assert result == "Error: Session is empty or not provided. Nothing saved."
 	mock_memory_service.add_session_to_memory.assert_not_called()
 
@@ -49,6 +53,8 @@ async def test_query_memory_returns_entries():
 
 	tool = MemoryRetrievalTool(memory_service=mock_memory_service)
 	entries = await tool.query_memory("some query", top_k=2)
+	# Display entries for verification
+	print("test_query_memory_returns_entries ->", entries)
 
 	assert entries == ["entry1", "entry2"]
 	mock_memory_service.search_memory.assert_awaited_once_with("some query", top_k=2)
@@ -60,6 +66,8 @@ async def test_query_memory_empty_query():
 	mock_memory_service.search_memory = AsyncMock()
 	tool = MemoryRetrievalTool(memory_service=mock_memory_service)
 	entries = await tool.query_memory("")
+	# Display entries for verification
+	print("test_query_memory_empty_query ->", entries)
 	assert entries == []
 	mock_memory_service.search_memory.assert_not_called()
 
