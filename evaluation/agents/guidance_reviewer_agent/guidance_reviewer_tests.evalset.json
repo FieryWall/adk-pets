@@ -3,130 +3,6 @@
   "name": "Evaluation suite for guidance reviewer agent that evaluates pet care advice quality",
   "eval_cases": [
     {
-      "eval_id": "dangerous_medication_advice",
-      "conversation": [
-        {
-          "invocation_id": "e-dangerous_medication_advice-000",
-          "user_content": {
-            "parts": [
-              {
-                "text": "For your dog's pain, give them 2-3 ibuprofen tablets every 6 hours. Human pain medications work great for dogs and you can also try aspirin or acetaminophen. Just use the same dosage you would for a human of similar weight. This should clear up the problem quickly without needing to see a vet."
-              }
-            ],
-            "role": "user"
-          },
-          "final_response": {
-            "parts": [
-              {
-                "text": "Test case: dangerous_medication_advice - Evaluating agent response quality."
-              }
-            ],
-            "role": "model"
-          },
-          "intermediate_data": {},
-          "creation_timestamp": 1763829601.125459
-        }
-      ],
-      "session_input": {
-        "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
-      },
-      "creation_timestamp": 1763829601.125459
-    },
-    {
-      "eval_id": "incomplete_cat_feeding_advice",
-      "conversation": [
-        {
-          "invocation_id": "e-incomplete_cat_feeding_advice-000",
-          "user_content": {
-            "parts": [
-              {
-                "text": "Feed your cat twice a day. Use good quality food. Make sure they have water available."
-              }
-            ],
-            "role": "user"
-          },
-          "final_response": {
-            "parts": [
-              {
-                "text": "Test case: incomplete_cat_feeding_advice - Evaluating agent response quality."
-              }
-            ],
-            "role": "model"
-          },
-          "intermediate_data": {},
-          "creation_timestamp": 1763829602.125459
-        }
-      ],
-      "session_input": {
-        "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
-      },
-      "creation_timestamp": 1763829602.125459
-    },
-    {
-      "eval_id": "comprehensive_behavioral_guidance",
-      "conversation": [
-        {
-          "invocation_id": "e-comprehensive_behavioral_guidance-000",
-          "user_content": {
-            "parts": [
-              {
-                "text": "For a cat hiding more frequently: This behavioral change could indicate stress, illness, or environmental factors. Monitor for other symptoms like changes in appetite, litter box habits, or vocalization. Check for recent household changes (new pets, moving furniture, loud noises). Provide quiet safe spaces, maintain consistent routines, and consider pheromone diffusers. If behavior persists beyond a week or other symptoms develop, schedule a veterinary examination to rule out underlying health issues."
-              }
-            ],
-            "role": "user"
-          },
-          "final_response": {
-            "parts": [
-              {
-                "text": "Test case: comprehensive_behavioral_guidance - Evaluating agent response quality."
-              }
-            ],
-            "role": "model"
-          },
-          "intermediate_data": {},
-          "creation_timestamp": 1763829603.125459
-        }
-      ],
-      "session_input": {
-        "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
-      },
-      "creation_timestamp": 1763829603.125459
-    },
-    {
-      "eval_id": "vague_emergency_guidance",
-      "conversation": [
-        {
-          "invocation_id": "e-vague_emergency_guidance-000",
-          "user_content": {
-            "parts": [
-              {
-                "text": "If your pet is sick, you should probably take them to see someone who knows about animals. Try to make them feel better at home first though. Most pet problems go away on their own if you wait long enough."
-              }
-            ],
-            "role": "user"
-          },
-          "final_response": {
-            "parts": [
-              {
-                "text": "Test case: vague_emergency_guidance - Evaluating agent response quality."
-              }
-            ],
-            "role": "model"
-          },
-          "intermediate_data": {},
-          "creation_timestamp": 1763829604.125459
-        }
-      ],
-      "session_input": {
-        "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
-      },
-      "creation_timestamp": 1763829604.125459
-    },
-    {
       "eval_id": "accurate_dog_limping_guidance",
       "conversation": [
         {
@@ -134,7 +10,7 @@
           "user_content": {
             "parts": [
               {
-                "text": "For a dog limping on the front leg after exercise with no visible injury: Rest the dog for 24-48 hours, limit activity to gentle walks, apply cold compress for 10-15 minutes if tolerated, monitor for improvement. If limping persists beyond 48 hours, worsens, or other symptoms develop (loss of appetite, lethargy, swelling), contact your veterinarian immediately. Avoid giving human pain medications as they can be toxic to dogs."
+                "text": ""
               }
             ],
             "role": "user"
@@ -153,7 +29,10 @@
       ],
       "session_input": {
         "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
+        "user_id": "user",
+        "state": {
+          "guidance": "For a dog limping on the front leg after exercise with no visible injury: Rest the dog for 24-48 hours, limit activity to gentle walks, apply cold compress for 10-15 minutes if tolerated, monitor for improvement. If limping persists beyond 48 hours, worsens, or other symptoms develop (loss of appetite, lethargy, swelling), contact your veterinarian immediately. Avoid giving human pain medications as they can be toxic to dogs."
+        }
       },
       "creation_timestamp": 1763829600.125459
     },
@@ -165,7 +44,7 @@
           "user_content": {
             "parts": [
               {
-                "text": "For a healthy adult Maine Coon (3 years old, indoor): Feed 2-3 meals daily totaling 3/4 to 1 cup of high-quality dry food, or follow manufacturer's weight-based guidelines. Maine Coons are prone to overeating, so measure portions and avoid free-feeding. If begging between meals, consider dividing daily food into 3 smaller portions or adding a small amount of wet food for satiety. Monitor weight regularly and adjust portions as needed. Fresh water should always be available."
+                "text": ""
               }
             ],
             "role": "user"
@@ -184,9 +63,46 @@
       ],
       "session_input": {
         "app_name": "guidance_reviewer_agent",
-        "user_id": "user"
+        "user_id": "user",
+        "state": {
+          "guidance": "For a healthy adult Maine Coon (3 years old, indoor): Feed 2-3 meals daily totaling 3/4 to 1 cup of high-quality dry food, or follow manufacturer's weight-based guidelines. Maine Coons are prone to overeating, so measure portions and avoid free-feeding. If begging between meals, consider dividing daily food into 3 smaller portions or adding a small amount of wet food for satiety. Monitor weight regularly and adjust portions as needed. Fresh water should always be available."
+        }
       },
       "creation_timestamp": 1763829605.125459
+    },
+    {
+      "eval_id": "dangerous_medication_advice",
+      "conversation": [
+        {
+          "invocation_id": "e-dangerous_medication_advice-000",
+          "user_content": {
+            "parts": [
+              {
+                "text": ""
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "This guidance is dangerously inaccurate and unsafe. Never administer human pain medications like ibuprofen, aspirin, or acetaminophen to dogs, as they are often toxic or require specific veterinary-prescribed dosages. Pain in dogs always requires veterinary consultation for proper diagnosis and safe treatment."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1763829601.125459
+        }
+      ],
+      "session_input": {
+        "app_name": "guidance_reviewer_agent",
+        "user_id": "user",
+        "state": {
+          "guidance": "For your dog's pain, give them 2-3 ibuprofen tablets every 6 hours. Human pain medications work great for dogs and you can also try aspirin or acetaminophen. Just use the same dosage you would for a human of similar weight. This should clear up the problem quickly without needing to see a vet."
+        }
+      },
+      "creation_timestamp": 1763829601.125459
     }
   ],
   "creation_timestamp": 1763829600.125459

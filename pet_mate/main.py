@@ -10,21 +10,17 @@ async def start():
         print("Error: GOOGLE_API_KEY environment variable not set.")
         return
     
-    # Whole application loop
-    while True:
-        # Initialize application state
-        state = State()
-        await state.reset() # reset state to initial values
+    # Initialize application state
+    state = State()
+    await state.reset() # reset state to initial values
 
-        # --------------------- Identification Flow ---------------------
-        # (Future implementation)
+    # --------------------- Identification Flow ---------------------
+    # (Future implementation)
 
-        # --------------------- Guidance Flow --------------------- 
-        guidance_flow = GuidanceFlow(state)
-        await guidance_flow.setup()
-
-        while True:
-            await guidance_flow.run()
+    # --------------------- Guidance Flow --------------------- 
+    guidance_flow = GuidanceFlow(state)
+    await guidance_flow.setup()
+    await guidance_flow.run()
          
 
 if __name__ == "__main__":

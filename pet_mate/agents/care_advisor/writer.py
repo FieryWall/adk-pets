@@ -5,6 +5,7 @@ from google.adk.models import Gemini
 from common import ClarificationNeeded
 from utils.adk_utils import retry_options
 import os
+from .researcher import guidance_researcher_agent
 
 # [TODO] This is a placeholder agent definition. Update as needed!
 def ask_clarification(question: str) -> str:
@@ -21,7 +22,6 @@ def ask_clarification(question: str) -> str:
     raise ClarificationNeeded(question)
 
 
-WRITER_INSTRUCTION = None
 # Load writer instruction from external file if available
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,20 +31,12 @@ try:
 except FileNotFoundError:
     raise Exception(f"Writer prompt file not found at {prompt_path}. Using default instruction.")
 
-# Helper agent for Google Search to avoid tool conflict with Function Calling
-search_agent = Agent(
-    name="search_agent",
-    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
-    description="Searches for information using Google search",
-    instruction="Use the google_search tool to find information on the given topic.",
-    tools=[google_search]
-)
 
 guidance_writer_agent = Agent(
     name="guidance_writer_agent",
     description="Agent that provides advice and information on pet care",
     instruction=WRITER_INSTRUCTION,
-    tools= [FunctionTool(func=ask_clarification), AgentTool(agent=search_agent)],
+    tools = [FunctionTool(func=ask_clarification), AgentTool(agent=guidance_researcher_agent)],
     output_key="guidance",
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options)
 )

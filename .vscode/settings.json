@@ -3,5 +3,10 @@
         "./pet_mate"
     ],
     "python.analysis.autoSearchPaths": true,
-    "python.defaultInterpreterPath": "/usr/local/bin/python3"
+    "python.testing.pytestEnabled": true,
+    "python.testing.autoTestDiscoverOn": true,
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda",
+    "python-envs.pythonProjects": []
 }
