@@ -41,7 +41,7 @@ search_agent = Agent(
 )
 
 guidance_writer_agent = Agent(
-    name="care_advisor",
+    name="guidance_writer_agent",
     description="Agent that provides advice and information on pet care",
     instruction=WRITER_INSTRUCTION,
     tools= [FunctionTool(func=ask_clarification), AgentTool(agent=search_agent)],
