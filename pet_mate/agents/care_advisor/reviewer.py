@@ -1,20 +1,16 @@
 from google.adk.agents import Agent
 from google.adk.models.google_llm import Gemini
+import os
 
-# Guidance reviewer evaluates provided care guidance for accuracy, safety, and completeness.
-REVIEWER_INSTRUCTION = """
- You are an expert pet care guidance reviewer that evaluates pet care advice for accuracy, safety, and completeness.
+# Load reviewer instruction from external file if available
+try:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    prompt_path = os.path.join(current_dir, "../reviewer_prompt.md")
+    with open(prompt_path, "r") as file:
+        REVIEWER_INSTRUCTION = file.read()
+except FileNotFoundError:
+    print(f"Reviewer prompt file not found at {prompt_path}. Using default instruction.")
 
-  You will receive pet care guidance to review. Evaluate: {guidance} based on:
-  - Accuracy: Is the advice medically and behaviorally sound?
-  - Safety: Does it avoid dangerous recommendations (especially toxic medications)?
-  - Completeness: Does it provide sufficient detail and context?
-  - Emergency awareness: Does it appropriately recommend veterinary care when needed?
-
-  If the guidance is accurate, safe, complete, and appropriate, respond with 'APPROVED'.
-  Otherwise, provide specific constructive feedback explaining what needs improvement, focusing on safety concerns, missing information, or inaccuracies.
-  Keep responses SHORT and CONCISE - provide essential guidance without excessive detail.
-"""
 guidance_reviewer_agent = Agent(
     name="guidance_reviewer",
     model= Gemini(
