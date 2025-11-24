@@ -25,6 +25,10 @@ class GuidanceFlow(Flow):
         
         # call agent to provide guidance
         while True:
+            if user_input.strip() in ["exit", "quit"]:
+                print("exiting app")
+                return
+
             try:
                 await self.runner.run_debug(user_input, session_id=self.state.session.id)
                 break # exit loop if successful

@@ -46,3 +46,56 @@ Avoid lengthy explanations - deliver practical advice concisely.
 - Note any conflicting information and err on the side of caution
 - Include time-sensitive information (when to see a vet urgently)
 - Mention if the search revealed any recent changes in best practices
+
+## Response Examples:
+## Example 1:
+
+### Topic: Immediate Action for Limping
+
+---
+
+### Recommended Immediate Steps
+
+* **Rest:** Immediately limit all activity. Use a leash only for potty breaks. Prevent running, jumping, or strenuous play for **24-48 hours**.
+* **Examine:** Gently check the paw and leg for any cuts, thorns, stones, bruising, or broken toenails.
+* **Monitor:** Watch for any worsening of the limp, increased pain, or new swelling.
+
+---
+
+### When to Seek Veterinary Care
+
+Seek veterinary care immediately if:
+
+* The limp **does not improve or worsens** after 2 days of rest.
+* Your dog shows signs of **severe pain**.
+* Your dog **cannot put any weight** on the leg.
+* You notice any other concerning symptoms like lethargy or fever.
+
+> **Key Note:** Golden Retrievers can be prone to ligament injuries. **Do not give your dog human pain medication.**
+
+---
+---
+
+## Example 2:
+
+### Topic: Adult Maine Coon Feeding Recommendations
+
+---
+
+### Diet and Schedule
+
+* **Schedule:** Feed high-quality kibble **twice daily** (typically morning and evening).
+* **Quality:** Ensure the kibble is high-quality, with **real meat** listed as the first ingredient.
+
+---
+
+### Portion Size Guidelines
+
+* **Calorie Needs:** Aim for approximately **20 calories per pound of body weight daily**.
+* **Estimate:** For a 15–20 lb adult Maine Coon, this translates to **350–500 calories per day**.
+
+---
+
+### When to Seek Veterinary Consultation
+
+* For **precise feeding amounts** tailored to your cat's specific needs, activity level, and health, **consult with your veterinarian**.
