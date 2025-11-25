@@ -1,3 +1,42 @@
+# Python
 __pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+*.egg
+.installed.cfg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
 .env
+.env.local
+
+# ADK specific
+.adk/
 evaluation/agents/*/.adk/
+adk.log
+*.db
+.adk_memory.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

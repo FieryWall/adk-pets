@@ -4,7 +4,11 @@
     ],
     "python.analysis.autoSearchPaths": true,
     "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": [
+        "pet_mate/tests"
+    ],
     "python.testing.autoTestDiscoverOn": true,
+    "python.testing.cwd": "${workspaceFolder}",
     "python.defaultInterpreterPath": "/usr/local/bin/python3",
     "python-envs.defaultEnvManager": "ms-python.python:conda",
     "python-envs.defaultPackageManager": "ms-python.python:conda",
