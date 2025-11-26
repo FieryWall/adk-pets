@@ -20,6 +20,3 @@ guidance_reviewer_agent = Agent(
     output_key="review_feedback", # This is the final output of the guidance review
 
 )
-
-print(f"Agent instance created: **{guidance_reviewer_agent.name}**")
-print(f"Model used: {guidance_reviewer_agent.model}")
