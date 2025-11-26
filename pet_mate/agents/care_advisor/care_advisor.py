@@ -30,7 +30,7 @@ refiner_agent = Agent(
 
 
 guidance_refinement_loop = LoopAgent(
-    name="StoryRefinementLoop",
+    name="GuidanceRefinementLoop",
     sub_agents=[guidance_reviewer_agent, refiner_agent],
     max_iterations=2,
 )
@@ -38,7 +38,7 @@ guidance_refinement_loop = LoopAgent(
 
 def build_care_advisor_agent(db_service: PetDBService) -> SequentialAgent:
     return SequentialAgent(
-        name="StoryPipeline",
+        name="GuidancePipeline",
         sub_agents=[
             build_guidance_writer_agent(db_service),
             guidance_refinement_loop

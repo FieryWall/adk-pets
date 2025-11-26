@@ -8,17 +8,14 @@ from .researcher import guidance_researcher_agent
 from .instruction_provider import build_instruction_provider_agent
 from pet_db_service import PetDBService
 
-# [TODO] This is a placeholder agent definition. Update as needed!
-def ask_clarification(question: str) -> str:
+
+def ask_clarification(question: str):
     """
     A tool the agent uses to explicitly ask the user for more information 
     to resolve a task. This function raises an exception to pause the flow.
 
     Args:
         question: The specific question the agent needs answered.
-
-    Returns:
-        str: The user's response (in a full ADK flow).
     """
     raise ClarificationNeeded(question)
 

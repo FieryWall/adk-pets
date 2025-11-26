@@ -1,4 +1,9 @@
 from abc import ABC, abstractmethod
+from enum import Enum
+
+class FlowAction(Enum):
+    CONTINUE = "Continue"
+    BREAK = "Break"
 
 class Flow(ABC):
     @abstractmethod
@@ -6,5 +11,5 @@ class Flow(ABC):
         pass
 
     @abstractmethod
-    async def run(self):
+    async def run(self) -> FlowAction:
         pass

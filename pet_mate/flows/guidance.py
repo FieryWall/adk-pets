@@ -1,7 +1,8 @@
 import asyncio
 from common import ClarificationNeeded
 from flows import Flow
-from state import State, APP_NAME, USER_ID
+from flows.flow import FlowAction
+from state import State, APP_NAME
 from agents import build_care_advisor_agent, build_greeting_runner
 from google.adk.runners import Runner
 import google.genai.types as types
@@ -23,14 +24,14 @@ class GuidanceFlow(Flow):
             session_service=self.state.session_service)
         
 
-    async def run(self):
+    async def run(self) -> FlowAction:
         while True:
             user_input = await self.greeting()
             # call agent to provide guidance
             while True:
                 if user_input.strip() in ["exit", "quit"]:
                     print("exiting app")
-                    return
+                    return FlowAction.BREAK
 
                 try:
                     await run(user_input, runner=self.runner, session_id=self.state.session.id)
