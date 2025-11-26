@@ -1,5 +1,5 @@
 from google.adk.agents import Agent, SequentialAgent, LoopAgent
-from google.adk.tools import FunctionTool
+# No FunctionTool wrappers used; use raw callables for AFC.
 
 from .reviewer import guidance_reviewer_agent
 from .writer import guidance_writer_agent
@@ -24,7 +24,7 @@ refiner_agent = Agent(
     - OTHERWISE, rewrite the guidance draft to fully incorporate the feedback from the guidance.""",
 
     output_key="current_guidance",
-    tools=[FunctionTool(exit_loop)]
+    tools=[exit_loop]
 )
 
 

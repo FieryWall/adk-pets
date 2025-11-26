@@ -1,7 +1,6 @@
 from google.adk.agents import Agent
 from google.adk.models.google_llm import Gemini
-from google.adk.tools import google_search
-from utils.adk_utils import retry_options
+from pet_mate.utils.adk_utils import retry_options
 import os
 
 
@@ -20,5 +19,6 @@ guidance_researcher_agent = Agent(
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
     description="Searches for information using Google search",
     instruction=RESEARCHER_INSTRUCTION,
-    tools=[google_search]
+    # No tools registered; the agent can provide search results via its instruction.
+    tools=[],
 )
