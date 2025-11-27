@@ -2,7 +2,8 @@ from google.adk.agents import Agent, SequentialAgent, LoopAgent
 # No FunctionTool wrappers used; use raw callables for AFC.
 
 from .reviewer import guidance_reviewer_agent
-from .writer import guidance_writer_agent
+from .writer import build_guidance_writer_agent
+from pet_db_service import PetDBService
 
 
 # [TODO] This is a placeholder agents definition. Update as needed!
@@ -35,7 +36,11 @@ guidance_refinement_loop = LoopAgent(
 )
 
 
-care_advisor_agent = SequentialAgent(
-    name="StoryPipeline",
-    sub_agents=[guidance_writer_agent, guidance_refinement_loop],
-)
+def build_care_advisor_agent(db_service: PetDBService) -> SequentialAgent:
+    return SequentialAgent(
+        name="StoryPipeline",
+        sub_agents=[
+            build_guidance_writer_agent(db_service),
+            guidance_refinement_loop
+        ],
+    )

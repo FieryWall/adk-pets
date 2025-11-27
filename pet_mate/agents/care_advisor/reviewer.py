@@ -1,6 +1,7 @@
 from google.adk.agents import Agent
 from google.adk.models.google_llm import Gemini
 import os
+from logger import log
 
 # Load reviewer instruction from external file if available
 try:

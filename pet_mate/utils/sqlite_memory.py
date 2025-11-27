@@ -161,6 +161,7 @@ class InMemoryMemoryService:
                 if len(results) >= top_k:
                     break
         return results
+        
 def get_memory_service(kind: str = "sqlite", db_path: str | None = None):
     """
     Factory helper to obtain a memory service implementation.
