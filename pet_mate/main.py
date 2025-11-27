@@ -1,5 +1,7 @@
 import asyncio
 import os
+from settings import parse_args
+from logger import setup_logger
 
 from state import State
 from flows import GuidanceFlow
@@ -9,6 +11,9 @@ async def start():
     if "GOOGLE_API_KEY" not in os.environ:
         print("Error: GOOGLE_API_KEY environment variable not set.")
         return
+
+    parse_args()
+    setup_logger()
     
     # Initialize application state
     state = State()

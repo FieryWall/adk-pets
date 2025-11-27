@@ -1,9 +1,16 @@
-from enum import Enum
+import logging
+from settings import is_verbose
 
-class Role(Enum):
-    USER = "User"
-    AGENT = "Agent"
+def setup_logger():
+    logger = logging.getLogger()
+    logger.setLevel(logging.ERROR)
 
-def display(role: Role, message: str) -> str:
-    print(f"{role.value}: {message}\n")
-    return message
+    if not logger.handlers:
+        handler = logging.StreamHandler()
+        handler.setLevel(logging.ERROR)
+        logger.addHandler(handler)
+
+
+def log(*values: object):
+    if is_verbose():
+        print(values)

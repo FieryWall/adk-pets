@@ -11,7 +11,8 @@
             "python": "python3", 
             "console": "integratedTerminal",
             "justMyCode": true,
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "args": ["--verbose"]
         },
         {
             "name": "ADK Web Evaluation",
