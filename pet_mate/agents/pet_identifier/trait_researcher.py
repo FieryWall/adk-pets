@@ -3,7 +3,7 @@ from google.adk.models.google_llm import Gemini
 from google.adk.tools import google_search
 from utils.adk_utils import retry_options
 import os
-
+from settings import current_model
 
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -17,7 +17,7 @@ except FileNotFoundError:
 trait_researcher_agent = Agent(
     name="trait_researcher_agent",
     description="Agent that researches traits of a pet",
-    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+    model=Gemini(model=current_model(), retry_options=retry_options),
     instruction=INSTRUCTION,
     tools=[google_search]
-)
+)   

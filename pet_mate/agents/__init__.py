@@ -1,3 +1,4 @@
 from .greeting_agent import build_greeting_runner
 from .care_advisor import build_care_advisor_agent, build_guidance_writer_agent, guidance_reviewer_agent, guidance_researcher_agent
 from .pet_identifier import relevance_checker_agent, pet_guesser_agent
+from .profile_generator import build_pet_profile_generator_agent

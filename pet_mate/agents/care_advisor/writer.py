@@ -7,6 +7,7 @@ import os
 from .researcher import guidance_researcher_agent
 from .instruction_provider import build_instruction_provider_agent
 from pet_db_service import PetDBService
+from settings import current_model
 
 
 def ask_clarification(question: str):
@@ -40,5 +41,5 @@ def build_guidance_writer_agent(db_service: PetDBService) -> Agent:
             AgentTool(agent=guidance_researcher_agent),
             AgentTool(agent=build_instruction_provider_agent(db_service))],
         output_key="guidance",
-        model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+        model=Gemini(model=current_model(), retry_options=retry_options),
     )

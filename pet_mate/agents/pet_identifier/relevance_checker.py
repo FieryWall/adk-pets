@@ -1,10 +1,10 @@
 from google.adk.agents import Agent
 from google.adk.tools import FunctionTool
-from google.adk.models import Gemini
+from google.adk.models.google_llm import Gemini
 from utils.adk_utils import retry_options
 import os
 from common import ClarificationNeeded
-
+from settings import current_model
 
 def steer_to_topic(excuse: str):
     """
@@ -27,5 +27,6 @@ relevance_checker_agent = Agent(
     name="relevance_checker_agent",
     description="Agent that confirms user describes a pet",
     instruction=INSTRUCTION,
-    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
-    tools=[FunctionTool(func=steer_to_topic)])
+    model=Gemini(model=current_model(), retry_options=retry_options),
+    tools=[FunctionTool(func=steer_to_topic)],
+    output_key="user_input")

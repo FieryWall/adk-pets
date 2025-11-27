@@ -2,8 +2,10 @@ import asyncio
 from common import ClarificationNeeded, GuessConfirmationNeeded
 from flows import Flow, FlowAction
 from state import State, APP_NAME
+from utils.adk_utils import run
 from google.adk.runners import Runner
 from agents.pet_identifier import pet_identifier_agent
+from agents.profile_generator import build_pet_profile_generator_agent
 
 class IdentificationFlow(Flow):
 
@@ -37,8 +39,7 @@ class IdentificationFlow(Flow):
                 return FlowAction.BREAK
 
             try:
-                result = await pet_identifier_runner.run_async(user_input, session_id=self.state.session.id)
-                print(result)
+                await run(user_input, runner=pet_identifier_runner, session_id=self.state.session.id)
                 break
 
             except ClarificationNeeded as e:
@@ -59,4 +60,10 @@ class IdentificationFlow(Flow):
         return FlowAction.CONTINUE
 
     async def generate_pet_profile(self) -> FlowAction:
+        generate_pet_profile_runner = Runner(
+            app_name=APP_NAME,
+            agent=build_pet_profile_generator_agent(self.state.db_service),
+            session_service=self.state.session_service)
+        
+        await run("generate pet profile", runner=generate_pet_profile_runner, session_id=self.state.session.id)
         return FlowAction.CONTINUE

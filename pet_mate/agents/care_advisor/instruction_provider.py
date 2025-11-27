@@ -3,7 +3,8 @@ from google.adk.models.google_llm import Gemini
 from utils.adk_utils import retry_options
 import os
 from pet_db_service import PetDBService
-from logger import log
+from logger import log  
+from settings import current_model
 
 # --- 1. Instruction Provider Agent (The Agent) ---
 
@@ -22,10 +23,10 @@ log(f"Instruction Provider prompt loaded. Length: {len(INSTRUCTION)} characters.
 def build_instruction_provider_agent(db_service: PetDBService) -> Agent:
     return Agent(
         name="instruction_provider_agent",
-        model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+        model=Gemini(model=current_model(), retry_options=retry_options),
         description="Searches for pet care instructions from a specialized pet care database",
         instruction=INSTRUCTION,
         output_key="care_instructions",
-        tools=[db_service.pet_db_search],
+        tools=[db_service.search],
     )
 

@@ -8,7 +8,7 @@ from .image_finder import image_finder_agent
 from common import ClarificationNeeded, GuessConfirmationNeeded
 from google.adk.tools import FunctionTool
 from pydantic import BaseModel, Field
-
+from settings import current_model
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
     prompt_path = os.path.join(current_dir, "../guesser_prompt.md")
@@ -56,7 +56,7 @@ class GuessDetails(BaseModel):
 pet_guesser_agent = Agent(
     name="PetGuesser",
     description="Agent that identifies pets based on descriptions by researching traits and finding visual confirmation",
-    model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+    model=Gemini(model=current_model(), retry_options=retry_options),
     instruction=INSTRUCTION,
     output_schema=GuessDetails,
     tools=[

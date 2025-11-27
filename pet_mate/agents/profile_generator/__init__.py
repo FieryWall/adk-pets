@@ -1,1 +1,1 @@
-from .root_agent import pet_profile_generator_agent
+from .root_agent import build_pet_profile_generator_agent
