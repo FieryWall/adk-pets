@@ -40,33 +40,13 @@ class PetDBService:
             self.db = get_memory_service(kind="memory")
         log(f"Pet DB Service initialized with DB path: {DB_PATH} ")
 
-
-        log("Checking for existing database entries...")
-        # Use a generic query to check if any data exists
-        check_results = await self.db.search_memory("[pet]", top_k=1)
-        
-        if check_results:
-            log(f"Database contains {len(check_results)} existing entries. Skipping initial data addition.")
-            return
-
-        log("Adding sample pet care instructions to the database...")
-
-        # The SQLiteMemoryService expects a session-like object with a 'messages' attribute
-        dummy_session = DummySession(messages=[
-            "[pet] African Grey Parrot named Tom. Requires a consistent diet of pellets, fresh fruits, and vegetables (avoid avocado and chocolate, which are toxic). Provide at least 4 hours of social interaction daily."
-        ])
-        
-        try:
-            session_id = await self.db.add_session_to_memory(dummy_session)
-            log(f"Successfully added initial data in session ID: {session_id}")
-        except Exception as e:
-            log(f"Error adding initial data: {e}")
-
-        log(f"Pet DB Search Tool initialized.")
+    async def save(self, message: str):
+        dummy_session = DummySession(messages=[message])
+        await self.db.add_session_to_memory(dummy_session)
 
     # --- Pet Database Search Tool Definition ---
     # This function is what the LLM agent will call.
-    async def pet_db_search(self, query: str, top_k: int = 5) -> str:
+    async def search(self, query: str, top_k: int = 5) -> str:
         """
         Search the persistent pet care instructions database for relevant information.
         

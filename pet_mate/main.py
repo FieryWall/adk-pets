@@ -3,8 +3,9 @@ import os
 from settings import parse_args
 from logger import setup_logger
 
+from flows import FlowAction
 from state import State
-from flows import GuidanceFlow
+from flows import GuidanceFlow, IdentificationFlow
 
 async def start():
     # check GOOGLE_API_KEY
@@ -20,13 +21,20 @@ async def start():
     await state.reset() # reset state to initial values
 
     # --------------------- Identification Flow ---------------------
-    # (Future implementation)
+    identification_flow = IdentificationFlow(state)
+    await identification_flow.setup()
+    action = await identification_flow.run()
+    if action == FlowAction.BREAK:
+        print("Exiting app")
+        return
 
     # --------------------- Guidance Flow --------------------- 
     guidance_flow = GuidanceFlow(state)
     await guidance_flow.setup()
-    await guidance_flow.run()
-         
+    action = await guidance_flow.run()
+    if action == FlowAction.BREAK:
+        print("Exiting app")
+
 
 if __name__ == "__main__":
     asyncio.run(start())

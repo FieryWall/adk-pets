@@ -7,18 +7,18 @@ import os
 from .researcher import guidance_researcher_agent
 from .instruction_provider import build_instruction_provider_agent
 from pet_db_service import PetDBService
+from settings import current_model
 
-# [TODO] This is a placeholder agent definition. Update as needed!
-def ask_clarification(question: str) -> str:
+
+def ask_clarification(question: str):
     """
     A tool the agent uses to explicitly ask the user for more information 
     to resolve a task. This function raises an exception to pause the flow.
 
     Args:
         question: The specific question the agent needs answered.
-
-    Returns:
-        str: The user's response (in a full ADK flow).
+    Raises:
+        ClarificationNeeded: Raised to request more information from the user.
     """
     raise ClarificationNeeded(question)
 
@@ -43,5 +43,5 @@ def build_guidance_writer_agent(db_service: PetDBService) -> Agent:
             AgentTool(agent=guidance_researcher_agent),
             AgentTool(agent=build_instruction_provider_agent(db_service))],
         output_key="guidance",
-        model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+        model=Gemini(model=current_model(), retry_options=retry_options),
     )

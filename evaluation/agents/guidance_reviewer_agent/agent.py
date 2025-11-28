@@ -9,4 +9,4 @@ from pet_mate.agents import guidance_reviewer_agent
 root_agent = guidance_reviewer_agent
 
 # Re-export the agent for evaluation  
-__all__ = ["guidance_reviewer_agent", "root_agent"]
+__all__ = ["root_agent"]

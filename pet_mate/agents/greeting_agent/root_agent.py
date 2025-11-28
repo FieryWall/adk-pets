@@ -4,7 +4,7 @@ from utils.adk_utils import retry_options
 import os
 from google.adk.runners import Runner
 from state import APP_NAME, State
-
+from settings import current_model
 
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -18,11 +18,11 @@ except FileNotFoundError:
 def build_greeting_runner(state: State) -> Agent:
     agent = Agent(
         name="greeting_agent",
-        model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
+        model=Gemini(model=current_model(), retry_options=retry_options),
         description="A greeting agent that greets the user",
         instruction=INSTRUCTION,
         output_key="greeting",
-        tools=[state.db_service.pet_db_search],
+        tools=[state.db_service.search],
     )
 
     return Runner(
