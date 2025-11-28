@@ -1,4 +1,4 @@
-# 🐾 ADK Pet Care Assistant
+# 🐾 ADK Pet Mate AI
 
 > An intelligent pet care guidance system built with Google ADK, providing personalized advice and care recommendations for your beloved pets.
 

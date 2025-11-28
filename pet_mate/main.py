@@ -19,9 +19,6 @@ async def start():
     state = State()
     await state.reset() # reset state to initial values
 
-    # --------------------- Identification Flow ---------------------
-    # (Future implementation)
-
     # --------------------- Guidance Flow --------------------- 
     guidance_flow = GuidanceFlow(state)
     await guidance_flow.setup()

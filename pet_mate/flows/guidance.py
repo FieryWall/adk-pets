@@ -1,8 +1,8 @@
 import asyncio
 from common import ClarificationNeeded
 from flows import Flow
-from state import State, APP_NAME, USER_ID
-from agents import build_care_advisor_agent, build_greeting_runner
+from state import State, APP_NAME
+from agents import build_care_advisor_agent
 from google.adk.runners import Runner
 import google.genai.types as types
 from utils.adk_utils import run
@@ -15,7 +15,6 @@ class GuidanceFlow(Flow):
 
 
     async def setup(self):
-        self.greeting_runner = build_greeting_runner(self.state)
         care_advisor_agent = build_care_advisor_agent(self.state.db_service)
         self.runner = Runner(
             app_name=APP_NAME,
@@ -24,12 +23,14 @@ class GuidanceFlow(Flow):
         
 
     async def run(self):
+        print("[Agent]: Hello, I'm a Pet Mate AI! I can help you with your pet's care. How can I assist you today?")
+
         while True:
-            user_input = await self.greeting()
-            # call agent to provide guidance
+            user_input = await asyncio.to_thread(input, "[User]: ")
+
             while True:
                 if user_input.strip() in ["exit", "quit"]:
-                    print("exiting app")
+                    print("Exiting application...")
                     return
 
                 try:
@@ -37,10 +38,4 @@ class GuidanceFlow(Flow):
                     break
 
                 except ClarificationNeeded as e:
-                    # ask for clarification
                     user_input = await asyncio.to_thread(input, f"[Agent]: {e.question}\n[User]: ")
-
-    
-    async def greeting(self):
-        await run(user_message="Hi!", runner=self.greeting_runner, session_id=self.state.session.id)
-        return await asyncio.to_thread(input, "[User]: ")

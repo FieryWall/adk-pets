@@ -34,12 +34,22 @@ except FileNotFoundError:
 
 
 def build_guidance_writer_agent(db_service: PetDBService) -> Agent:
+    async def save_guidance(guidance: str) -> str:
+        """Save the guidance to the database
+
+        Args:
+            guidance: The guidance to save.
+        """
+        await db_service.save(guidance)
+        return "Guidance saved successfully"
+
     return Agent(
         name="guidance_writer_agent",
         description="Agent that provides advice and information on pet care",
         instruction=WRITER_INSTRUCTION,
         tools = [
             FunctionTool(func=ask_clarification),
+            FunctionTool(func=save_guidance),
             AgentTool(agent=guidance_researcher_agent),
             AgentTool(agent=build_instruction_provider_agent(db_service))],
         output_key="guidance",

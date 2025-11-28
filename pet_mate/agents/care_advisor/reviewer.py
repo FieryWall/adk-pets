@@ -18,6 +18,5 @@ guidance_reviewer_agent = Agent(
         model_name="gemini-2.5-flash-lite",
     ),
     instruction=REVIEWER_INSTRUCTION,
-    output_key="review_feedback", # This is the final output of the guidance review
-
+    output_key="review_feedback",
 )
