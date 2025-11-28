@@ -24,13 +24,17 @@ async def start():
     identification_flow = IdentificationFlow(state)
     await identification_flow.setup()
     action = await identification_flow.run()
-    if action == FlowAction.BREAK: return
+    if action == FlowAction.BREAK:
+        print("Exiting app")
+        return
 
     # --------------------- Guidance Flow --------------------- 
     guidance_flow = GuidanceFlow(state)
     await guidance_flow.setup()
-    await guidance_flow.run()
-         
+    action = await guidance_flow.run()
+    if action == FlowAction.BREAK:
+        print("Exiting app")
+
 
 if __name__ == "__main__":
     asyncio.run(start())

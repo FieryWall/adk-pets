@@ -4,6 +4,6 @@ from .guesser import pet_guesser_agent
 
 
 pet_identifier_agent = SequentialAgent(
-    name="PetIdentificationPipline",
+    name="PetIdentificationPipeline",
     sub_agents=[relevance_checker_agent, pet_guesser_agent]
 )

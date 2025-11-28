@@ -5,7 +5,7 @@ LOG_LEVEL = "ERROR"
 MODEL = "gemini-2.5-flash-lite"
 
 def parse_args():
-    global VERBOSE, LOG_LEVEL
+    global VERBOSE, LOG_LEVEL, MODEL
     parser = argparse.ArgumentParser(description="Pet Mate")
     parser.add_argument("--verbose", action="store_true", help="Verbose output")
     parser.add_argument("--log-level", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], default="ERROR", help="Log level")

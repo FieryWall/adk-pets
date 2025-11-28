@@ -30,7 +30,6 @@ class GuidanceFlow(Flow):
             # call agent to provide guidance
             while True:
                 if user_input.strip() in ["exit", "quit"]:
-                    print("exiting app")
                     return FlowAction.BREAK
 
                 try:

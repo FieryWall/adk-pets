@@ -15,4 +15,4 @@ def steer_to_topic(excuse: str):
 root_agent.tools = [FunctionTool(func=steer_to_topic)]
 
 # Re-export the agent for evaluation  
-__all__ = ["relevance_checker_agent", "root_agent"]
+__all__ = ["root_agent"]

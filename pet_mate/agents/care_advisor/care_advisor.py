@@ -1,6 +1,5 @@
 from google.adk.agents import Agent, SequentialAgent, LoopAgent
 from google.adk.tools import ToolContext
-from google.adk.events import EventActions
 
 from .reviewer import guidance_reviewer_agent
 from .writer import build_guidance_writer_agent
@@ -10,7 +9,7 @@ from settings import current_model
 
 def exit_loop(tool_context: ToolContext):
     """Call this function ONLY when the guidance is 'APPROVED', indicating the story is finished and no more changes are needed."""
-    tool_context._event_actions = EventActions(end_of_agent=True)
+    tool_context.actions.end_of_agent = True
     return {"status": "approved", "message": "guidance approved. Exiting refinement loop."}
 
 refiner_agent = Agent(

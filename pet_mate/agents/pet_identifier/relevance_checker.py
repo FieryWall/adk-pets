@@ -8,7 +8,7 @@ from settings import current_model
 
 def steer_to_topic(excuse: str):
     """
-    A tool the agent uses to excuse the user for not describing a pet.
+    A tool the agent uses to inform or redirect the user when they have not described a pet.
     """
     raise ClarificationNeeded(excuse)
 
@@ -20,7 +20,7 @@ try:
     with open(prompt_path, "r") as file:
         INSTRUCTION = file.read()
 except FileNotFoundError:
-    raise Exception(f"Writer prompt file not found at {prompt_path}. Using default instruction.")
+    raise Exception(f"Relevance checker file not found at {prompt_path}. Using default instruction.")
 
 
 relevance_checker_agent = Agent(

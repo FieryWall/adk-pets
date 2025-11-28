@@ -20,13 +20,14 @@ class IdentificationFlow(Flow):
 
     async def run(self) -> FlowAction:
         action = await self.identify_pet()
-        if action == FlowAction.BREAK: return action
+        if action == FlowAction.BREAK:
+            return action
 
         return await self.generate_pet_profile()
 
 
     async def identify_pet(self) -> FlowAction:
-        user_input = await asyncio.to_thread(input, "[Agent]: This is a Pet Mate. Please, describe your pet for identification.\n[User]: ")
+        user_input = await asyncio.to_thread(input, "[Agent]: This is the Pet Mate AI. Please, describe your pet for identification.\n[User]: ")
 
         pet_identifier_runner = Runner(
             app_name=APP_NAME,
@@ -35,7 +36,6 @@ class IdentificationFlow(Flow):
         
         while True:
             if user_input.strip() in ["exit", "quit"]:
-                print("exiting app")
                 return FlowAction.BREAK
 
             try:
@@ -52,10 +52,6 @@ class IdentificationFlow(Flow):
                     input, 
                     f"[Agent]: {e.question}\n[User]: "
                 )
-                
-                if user_input.strip() in ["exit", "quit"]:
-                    print("exiting app")
-                    return FlowAction.BREAK
         
         return FlowAction.CONTINUE
 

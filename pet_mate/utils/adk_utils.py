@@ -1,3 +1,4 @@
+from typing import Any
 from google.genai import types
 from logger import is_verbose
 from google.adk.runners import Runner
@@ -11,6 +12,6 @@ retry_options = types.HttpRetryOptions(
 )
 
 
-async def run(user_message: str, runner: Runner, session_id: str):
+async def run(user_message: str, runner: Runner, session_id: str) -> Any:
     debug_result = await runner.run_debug(user_message, session_id=session_id, verbose=is_verbose())
     return debug_result

@@ -17,6 +17,8 @@ def ask_clarification(question: str):
 
     Args:
         question: The specific question the agent needs answered.
+    Raises:
+        ClarificationNeeded: Raised to request more information from the user.
     """
     raise ClarificationNeeded(question)
 

@@ -35,4 +35,4 @@ def confirm_guess(question: str, pet_name: str, image_url: str = ""):
 root_agent.tools = root_agent.tools[:2] + [FunctionTool(func=ask_clarification), FunctionTool(func=confirm_guess)]
 
 # Re-export the agent for evaluation  
-__all__ = ["pet_guesser_agent", "root_agent"]
+__all__ = ["root_agent"]

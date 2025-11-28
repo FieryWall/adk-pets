@@ -15,7 +15,7 @@ except FileNotFoundError:
 guidance_reviewer_agent = Agent(
     name="guidance_reviewer",
     model= Gemini(
-        model_name=current_model(),
+        model=current_model(),
         retry_options=retry_options,
     ),
     instruction=REVIEWER_INSTRUCTION,
