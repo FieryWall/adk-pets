@@ -85,16 +85,15 @@ adk-pets/
 |   |   └── 📝 instruction_provider/# Instruction generation
 │   │
 │   └── 🔄 flows/                   # Application flow management
-│       └── 📄 guidance.py          # Main guidance flow logic
-│
-├── 🔄 flows/                       # Legacy flows (deprecated)
-│   └── 📄 guidance.py
+│       └── 📄 guidance.py
+        └── 📄 flow.py 
 │
 ├── 📓 notebooks/                   # Jupyter notebooks for experimentation
 │   └── 📄 dima.ipynb              # Development notebook
 │
 └── 🛠️ utils/                       # Utility functions
-    └── 📄 adk_utils.py             # ADK helper functions
+    └── 📄 adk_utils.py
+    └── 📄 sqlite_memory.py         # memory service
 ```
 
 ### Key Components
