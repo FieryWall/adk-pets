@@ -3,6 +3,7 @@ from google.adk.models.google_llm import Gemini
 from google.adk.tools import google_search
 from utils.adk_utils import retry_options
 import os
+from logger import log
 
 try:
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -17,7 +18,8 @@ except FileNotFoundError:
 guidance_researcher_agent = Agent(
     name="guidance_researcher_agent",
     model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
-    description="Searches for information using Google search",
+    description="Searches the web for veterinary advice, symptoms, and pet care information.",
     instruction=RESEARCHER_INSTRUCTION,
     tools=[google_search],
+    before_agent_callback=lambda *args, **kwargs: log(f"[Tool 'guidance_researcher_agent'] called")
 )

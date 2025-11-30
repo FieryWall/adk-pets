@@ -5,14 +5,12 @@
             "name": "Debug Pet Mate",
             "type": "debugpy",
             "request": "launch",
-            // Specify the exact file path relative to the workspace root
             "program": "${workspaceFolder}/pet_mate/main.py",
-            // Use the "python3" interpreter specified in settings.json
             "python": "python3", 
             "console": "integratedTerminal",
             "justMyCode": true,
             "envFile": "${workspaceFolder}/.env",
-            "args": ["--verbose"]
+            "args": ["-m", "gemini-2.0-flash-lite"]
         },
         {
             "name": "ADK Web Evaluation",

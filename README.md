@@ -1,4 +1,4 @@
-# 🐾 ADK Pet Care Assistant
+# 🐾 ADK Pet Mate AI
 
 > An intelligent pet care guidance system built with Google ADK, providing personalized advice and care recommendations for your beloved pets.
 
@@ -56,6 +56,24 @@
 python pet_mate/main.py
 ```
 
+### Command-Line Parameters
+
+The application supports the following command-line options:
+
+- **`-d, --debug`**: Enable debug output
+- **`-v, --verbose`**: Enable verbose output (displays current model when enabled)
+- **`-l, --log-level`**: Set logging level (choices: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`). Default: `ERROR`
+- **`-m, --model`**: Select the AI model to use. Available options:
+  - `gemini-2.5-flash-lite` (default)
+  - `gemini-2.5-flash`
+  - `gemini-2.0-flash-lite`
+  - `gemini-2.0-flash`
+
+**Example usage**:
+```bash
+python pet_mate/main.py --verbose --log-level INFO --model gemini-2.5-flash
+```
+
 ### Running Jupyter Notebooks
 
 ```bash
@@ -68,41 +86,14 @@ Then open the `notebooks/dima.ipynb` notebook in your browser.
 
 ```
 adk-pets/
-├── 📄 README.md                    # Project documentation
-├── 📄 requirements.txt             # Python dependencies
-├── 📄 main.py                      # Root application entry point
-│
-├── 🐾 pet_mate/                    # Main application package
-│   ├── 📄 main.py                  # Application entry point
-│   ├── 📄 logger.py                # Logging utilities
-│   │
-│   ├── 🤖 agents/                  # AI agent implementations
-│   │   ├── 📄 common.py            # Shared agent utilities
-│   │   ├── 💡 care_advisor/        # Pet care advice agent
-│   │   ├── 📋 guidance_reviewer/   # Guidance validation agent
-│   │   ├── 🔍 guidence_researcher/ # Research and fact-checking
-│   │   └── 📝 guidance writer/     # Guidance providing advice
-|   |   └── 📝 instruction_provider/# Instruction generation
-│   │
-│   └── 🔄 flows/                   # Application flow management
-│       └── 📄 guidance.py
-        └── 📄 flow.py 
-│
-├── 📓 notebooks/                   # Jupyter notebooks for experimentation
-│   └── 📄 dima.ipynb              # Development notebook
-│
-└── 🛠️ utils/                       # Utility functions
-    └── 📄 adk_utils.py
-    └── 📄 sqlite_memory.py         # memory service
+├── pet_mate/              # Main application package
+│   ├── main.py           # Application entry point
+│   ├── settings.py       # Configuration and CLI parameters
+│   ├── agents/           # AI agent implementations
+│   │   └── care_advisor/ # Pet care advice agent
+│   └── flows/            # Application flow management
+├── evaluation/           # Agent evaluation and testing
 ```
-
-### Key Components
-
-- **`pet_mate/main.py`**: Main application entry point with state management and flow orchestration
-- **`pet_mate/agents/`**: Modular AI agents for different pet care aspects
-- **`pet_mate/flows/`**: Conversation flow management and user interaction logic
-- **`utils/adk_utils.py`**: Google ADK utilities and configuration helpers
-- **`notebooks/`**: Development and testing notebooks
 
 ## 🧪 Testing
 
