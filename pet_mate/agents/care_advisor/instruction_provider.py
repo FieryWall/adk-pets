@@ -25,7 +25,6 @@ def build_instruction_provider_agent(db_service: PetDBService) -> Agent:
         model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
         description="Searches for pet care instructions from a specialized pet care database",
         instruction=INSTRUCTION,
-        output_key="care_instructions",
-        tools=[db_service.pet_db_search],
+        tools=[db_service.search],
     )
 

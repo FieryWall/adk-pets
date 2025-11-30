@@ -7,19 +7,19 @@ import os
 from .researcher import guidance_researcher_agent
 from .instruction_provider import build_instruction_provider_agent
 from pet_db_service import PetDBService
+from logger import log
 
-# [TODO] This is a placeholder agent definition. Update as needed!
 def ask_clarification(question: str) -> str:
     """
-    A tool the agent uses to explicitly ask the user for more information 
-    to resolve a task. This function raises an exception to pause the flow.
+    Asks the user for clarification.
+    
+    CRITICAL: You MUST use this tool whenever you need more information from the user (like pet species, symptoms, etc.).
+    Do NOT ask questions in your final response text. Call this tool instead.
 
     Args:
-        question: The specific question the agent needs answered.
-
-    Returns:
-        str: The user's response (in a full ADK flow).
+        question: The question to ask the user.
     """
+    log(f"[Tool 'ask_clarification']: {question}")
     raise ClarificationNeeded(question)
 
 
@@ -34,14 +34,34 @@ except FileNotFoundError:
 
 
 def build_guidance_writer_agent(db_service: PetDBService) -> Agent:
+    async def save_guidance(guidance: str) -> str:
+        """Save the complete guidance to the database for future reference.
+        
+        CRITICAL: This tool MUST be called after providing guidance to the user. 
+        The saved guidance enables future personalized responses and maintains conversation continuity.
+        
+        The guidance should be your complete, final response that you provided to the user.
+        This includes all actionable advice, recommendations, and context.
+
+        Args:
+            guidance: The complete guidance text to save. This should be your full response 
+                     that addresses the user's question with actionable pet care advice.
+        
+        Returns:
+            Confirmation message that guidance was saved successfully.
+        """
+        await db_service.save(guidance)
+        return "Guidance saved successfully"
+
     return Agent(
         name="guidance_writer_agent",
         description="Agent that provides advice and information on pet care",
         instruction=WRITER_INSTRUCTION,
         tools = [
-            FunctionTool(func=ask_clarification),
             AgentTool(agent=guidance_researcher_agent),
-            AgentTool(agent=build_instruction_provider_agent(db_service))],
+            AgentTool(agent=build_instruction_provider_agent(db_service)),
+            FunctionTool(func=ask_clarification),
+            FunctionTool(func=save_guidance)],
         output_key="guidance",
         model=Gemini(model="gemini-2.5-flash-lite", retry_options=retry_options),
     )
