@@ -81,7 +81,8 @@ adk-pets/
 │   │   ├── 💡 care_advisor/        # Pet care advice agent
 │   │   ├── 📋 guidance_reviewer/   # Guidance validation agent
 │   │   ├── 🔍 guidence_researcher/ # Research and fact-checking
-│   │   └── 📝 instruction_provider/ # Instruction generation
+│   │   └── 📝 guidance writer/     # Guidance providing advice
+|   |   └── 📝 instruction_provider/# Instruction generation
 │   │
 │   └── 🔄 flows/                   # Application flow management
 │       └── 📄 guidance.py          # Main guidance flow logic
