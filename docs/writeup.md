@@ -1,6 +1,5 @@
 # Agent PetMateAI
 
-![Thumbnail Placeholder](path/to/thumbnail.jpg)
 
 Agent PetMateAI is a digital tool that assists pet sitters/owners in managing the care of pets across various species and breeds. The agent guides users from their first interaction with an animal, maintains a history of care, and provides tailored instructions at every step.
 
