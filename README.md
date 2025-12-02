@@ -74,14 +74,6 @@ The application supports the following command-line options:
 python pet_mate/main.py --verbose --log-level INFO --model gemini-2.5-flash
 ```
 
-### Running Jupyter Notebooks
-
-```bash
-jupyter lab --no-browser
-```
-
-Then open the `notebooks/dima.ipynb` notebook in your browser.
-
 ## 📁 Project Structure
 
 ```
